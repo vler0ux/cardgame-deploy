@@ -9,6 +9,9 @@ Pour cela, nous allons devoir gérer nos cartes, créer nos decks et lancer des 
 Nous voulons réaliser un jeu de cartes en utilisant le Framework Angular.
 Le BackEnd sera fourni, pour faciliter le démarrage.
 
+L'application doit être sécurisée. Le BackEnd est protégé grâce à un accès via un JWT Token, envoyé dans les Headers de chaque requête.
+
+L'application ne peut être accessible sans avoir été connecté. les Urls d'accès doivent toutes être protégées.
 L'application doit permettre à un joueur de se connecter grâce à un couple Login/Password.
 Si le joueur n'a pas de compte, il doit pouvoir en créer un disposant des informations suivantes :
 - Name
