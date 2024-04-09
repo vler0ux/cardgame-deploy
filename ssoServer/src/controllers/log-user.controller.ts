@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import { controller, httpPost, request, response } from 'inversify-express-utils';
-
-import { CredentialsDto } from '../dtos/credentials.dto';
 import { IProfileService } from '../interfaces/services/profile.service';
 import SERVICE_TYPES from '../interfaces/services/services.types';
 import { inject } from 'inversify';
