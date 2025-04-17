@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { controller, httpGet, httpPut, request, response } from 'inversify-express-utils';
 
 import { IProfileService } from '../interfaces/services/profile.service';
-import { JwtCheckerMiddleware } from '../implementations/middlewares/jwt-checker.middleware';
 import { ProfileModel } from '../models/profile.model';
 import SERVICE_TYPES from '../interfaces/services/services.types';
 import { inject } from 'inversify';
@@ -13,7 +12,7 @@ export class ProfileController {
         @inject(SERVICE_TYPES.ProfileService) private readonly profileService: IProfileService,
     ) {}
 
-    @httpGet('', JwtCheckerMiddleware)
+    @httpGet('')
     public async getAll(@request() req: Request, @response() res: Response): Promise<void> {
         try {
             const profiles: ProfileModel[] = await this.profileService.findAll();
@@ -36,7 +35,7 @@ export class ProfileController {
         }
     }
 
-    @httpGet('/:id', JwtCheckerMiddleware)
+    @httpGet('/:id')
     public async getById(@request() req: Request, @response() res: Response): Promise<void> {
         try {
             const id: string = req.params.id as string;
