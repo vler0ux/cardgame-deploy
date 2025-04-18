@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ILoginData } from './profile/login.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LogUserService {
-
-  private apiUrl = 'http://localhost:3000/api/login';
+isLoggedIn(): boolean  {
+  return !!localStorage.getItem('authToken');
+}
+  private apiUrl = 'http://localhost:3010/api/login';
 
   constructor(private http: HttpClient) {}
 
-  logUser(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  login(credentials: ILoginData): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.apiUrl, credentials);
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
   }
 }

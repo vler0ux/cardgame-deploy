@@ -1,0 +1,66 @@
+.plateau-container {
+    max-width: 960px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .plateau-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .plateau-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .plateau-header button {
+    background-color: #ff5252;
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .plateau-header button:hover {
+    background-color: #d32f2f;
+  }
+
+  .plateau-main {
+    text-align: center;
+  }
+
+  .game-board {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .card-slot {
+    width: 100px;
+    height: 140px;
+    border: 2px dashed #999;
+    border-radius: 0.75rem;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    transition: transform 0.2s;
+  }
+
+  .card-slot:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }

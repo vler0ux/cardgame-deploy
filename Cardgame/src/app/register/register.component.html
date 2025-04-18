@@ -1,17 +1,26 @@
-<h2>Créer un profil</h2>
+<div class="register-container">
+  <h2>Créer un profil</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <label>Nom :</label>
-  <input type="text" [(ngModel)]="profile.name" name="name" required />
+  <form (ngSubmit)="onSubmit()" class="form-card">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input id="name" type="text" [(ngModel)]="profile.name" name="name" required />
+    </div>
 
-  <label>Email :</label>
-  <input type="email" [(ngModel)]="profile.email" name="email" required />
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" [(ngModel)]="profile.email" name="email" required />
+    </div>
 
-  <label>Mot de passe :</label>
-  <input type="password" [(ngModel)]="profile.password" name="password" required />
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" [(ngModel)]="profile.password" name="password" required />
+    </div>
 
-  <button type="submit">Créer</button>
-</form>
+    <button type="submit">Valider</button>
+  </form>
 
-<p *ngIf="message">{{ message }}</p>
+  <p *ngIf="message" class="message">{{ message }}</p>
+</div>
+
 

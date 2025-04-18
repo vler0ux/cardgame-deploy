@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { IProfile } from '../profile/profile.model';
-import { ILoginData } from '../profile/login.model';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
   profile: IProfile = {
     name: '',
     email: '',
-    password: ''
-  };
+    password: '',
+    login: undefined
+  }
 
   message = '';
 

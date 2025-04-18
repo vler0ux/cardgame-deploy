@@ -1,0 +1,16 @@
+<div class="plateau-container">
+  <header class="plateau-header">
+    <h1>🎴 Card Game</h1>
+    <button *ngIf="logUserService.isLoggedIn()" (click)="onLogout()">Se déconnecter</button>
+  </header>
+
+  <main class="plateau-main">
+    <p>Bienvenue sur le plateau de jeu, prêt·e à jouer ?</p>
+
+    <div class="game-board">
+      <div class="card-slot">🂠</div>
+      <div class="card-slot">🂠</div>
+      <div class="card-slot">🂠</div>
+    </div>
+  </main>
+</div>
