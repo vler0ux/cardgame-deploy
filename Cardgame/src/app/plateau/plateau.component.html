@@ -5,12 +5,13 @@
   </header>
 
   <main class="plateau-main">
-    <p>Bienvenue sur le plateau de jeu, prêt·e à jouer ?</p>
-
+    <div class="plateau-intro">
+      <h1>Bienvenue sur le plateau !</h1>
+      <p>Pour commencer à jouer ! Choisissez un thème.</p>
+    </div>
     <div class="game-board">
-      <div class="card-slot">🂠</div>
-      <div class="card-slot">🂠</div>
-      <div class="card-slot">🂠</div>
+        <app-deck theme="hack-animaux"></app-deck>
+        <app-deck theme="bestioles-bureau"></app-deck>
     </div>
   </main>
 </div>

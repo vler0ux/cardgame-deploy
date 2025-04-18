@@ -41,12 +41,13 @@
   }
 
   .game-board {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+    max-height: calc(100vh - 150px); /* Ajuste selon la taille du header */
+    overflow-y: auto;
   }
-
   .card-slot {
     width: 100px;
     height: 140px;
