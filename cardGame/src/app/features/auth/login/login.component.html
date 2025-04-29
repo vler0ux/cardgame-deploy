@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Jeu de cartes - Connexion</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="form-group">
+      <label for="login">Utilisateur</label>
+      <input type="text" formControlName="login" id="login" placeholder="Entrez votre login" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" formControlName="password" id="password" placeholder="Entrez votre mot de passe" />
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid" class="submit-btn">Se connecter</button>
+  </form>
+
+  <p class="register-link">Pas de compte ? <a routerLink="/register">Enregistrez-vous ! </a></p>
+</div>

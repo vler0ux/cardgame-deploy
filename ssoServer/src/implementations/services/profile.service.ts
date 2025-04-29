@@ -33,6 +33,10 @@ export class ProfileService implements IProfileService {
             throw new Error('Login not found');
         }
 
+        console.log('Mot de passe reçu du frontend :', password);
+        console.log('Mot de passe stocké :', foundProfile.password);
+        console.log('Égalité stricte ? ', foundProfile.password === password);
+
         if (foundProfile.password !== password) {
             throw new Error('Bad password');
         }

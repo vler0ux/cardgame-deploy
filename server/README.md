@@ -5,7 +5,7 @@ This document will give you all needed APIs for Angular part of this Card game.
 
 ```
 npm i
-mpn run start:dev
+npm run start:dev
 ```
 
 ## APIs
