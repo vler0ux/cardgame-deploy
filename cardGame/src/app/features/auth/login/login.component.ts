@@ -31,7 +31,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/dashboard']);
         },
         error: () => {
           this.errorMessage = 'Identifiants invalides';

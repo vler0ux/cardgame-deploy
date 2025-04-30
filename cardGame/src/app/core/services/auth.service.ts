@@ -18,11 +18,12 @@ interface TokenModel {
 })
 export class AuthService {
   private tokenKey = 'auth_token';
-
+  private ssoUrl = environment.ssoUrl;
   constructor(private http: HttpClient) {}
 
+
   login(loginData: LoginModel): Observable<void> {
-    return this.http.post<TokenModel>(`${environment.ssoUrl}/login`, loginData).pipe(
+    return this.http.post<TokenModel>(`${environment.ssoUrl}/api/login`, loginData).pipe(
       tap(response => {
         this.saveToken(response.token);
       }),
@@ -54,8 +55,9 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
-  register(data: any) {
-    return this.http.post('/api/auth/register', data);
+
+  register(userData: any): Observable<any> {
+    return this.http.put(`${this.ssoUrl}/api/profiles`, userData);
   }
 
 }
