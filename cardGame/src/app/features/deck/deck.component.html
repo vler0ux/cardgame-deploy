@@ -1,0 +1,44 @@
+<h2>Decks</h2>
+
+<form [formGroup]="form" (ngSubmit)="addDeck()" class="deck-form">
+  <label for="deckName">Nom du deck :</label>
+  <input id="deckName" type="text" formControlName="name" placeholder="Entrez le nom de votre deck" />
+  <button type="submit" [disabled]="form.invalid" class="submit-btn">Ajouter</button>
+</form>
+
+<div *ngIf="loading" class="loading">Chargement...</div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+<ul *ngIf="!loading && !errorMessage" class="deck-list">
+  <li *ngFor="let deck of decks" class="deck-item">
+    <div class="deck-info">
+      <strong>{{ deck.name }} </strong>({{ deck.cards.length }} cartes)
+    </div>
+
+    <div class="deck-actions">
+      <button (click)="viewDeckCards(deck)" class="action-btn">👀 Voir</button>
+      <button (click)="deleteDeck(deck.id!)" class="action-btn delete-btn">🗑️ Supprimer</button>
+    </div>
+
+    <div *ngIf="selectedDeckId === deck.id" class="deck-cards">
+      <h3>Cartes du deck {{ deck.name }}</h3>
+      <div class="add-card">
+        <select [(ngModel)]="selectedCardIdToAdd" class="card-select">
+          <option value="" disabled selected>Choisir une carte</option>
+          <option *ngFor="let card of allCards" [value]="card.id">{{ card.name }} ({{ card.value }})</option>
+        </select>
+        <button (click)="addCardToSelectedDeck(deck.id!)" [disabled]="!selectedCardIdToAdd" class="add-card-btn">➕ Ajouter la carte</button>
+      </div>
+
+      <div class="deck-card-container">
+        <ul class="deck-card-list">
+          <li *ngFor="let card of deckCards" class="deck-card-item">
+            <app-card [cardId]="card.id"></app-card>
+           <!-- <button (click)="removeCardFromDeck(selectedDeckId, card.id!)" class="remove-card-btn">🗑️ Supprimer du deck</button>-->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+

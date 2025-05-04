@@ -1,0 +1,26 @@
+<h2>Gestion des cartes</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input formControlName="name" placeholder="Nom de la carte" />
+  <input type="number" formControlName="value" placeholder="Valeur de la carte" />
+  <button type="submit">{{ isEditing ? 'Mettre à jour' : 'Créer la carte' }}</button>
+  <button type="button" *ngIf="isEditing" (click)="cancelEdit()">Annuler</button>
+</form>
+
+
+
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+<!-- <ul>
+  <li *ngFor="let card of cards">
+    <strong>{{ card.name }}</strong> (valeur : {{ card.value }})
+    <button (click)="editCard(card)">✏️ Modifier</button>
+    <button (click)="deleteCard(card.id!)">🗑️ Supprimer</button>
+  </li>
+</ul> -->
+
+<app-card-list
+  [cards]="cards"
+  (edit)="editCard($event)"
+  (delete)="deleteCard($event)">
+</app-card-list>

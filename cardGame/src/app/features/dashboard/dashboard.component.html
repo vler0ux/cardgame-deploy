@@ -1,0 +1,23 @@
+<!-- Bandeau noir en haut -->
+<header class="dashboard-header">
+  <div class="header-content">
+    <h1>Bienvenue sur le jeu de cartes!</h1>
+  </div>
+</header>
+
+<div class="dashboard">
+  <!-- Menu latéral sous le bandeau -->
+  <nav class="sidebar">
+    <ul>
+      <li><a routerLink="/dashboard/game" routerLinkActive="active">Nouvelle partie</a></li>
+      <li><a routerLink="/dashboard/decks" routerLinkActive="active">Decks</a></li>
+      <li><a routerLink="/dashboard/card-manager" routerLinkActive="active">Cartes</a></li>
+      <li><a (click)="logout()">Déconnexion</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contenu principal -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

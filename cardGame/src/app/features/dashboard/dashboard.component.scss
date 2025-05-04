@@ -1,0 +1,58 @@
+/* Style global du dashboard */
+
+body {
+  background-color: lightblue;
+}
+/* Bandeau noir en haut */
+.dashboard-header {
+  background-color: #111; /* Noir */
+  color: white;
+  padding: 20px 30px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Menu latéral (sidebar) */
+.sidebar {
+  background-color: #333;
+  width: 200px;
+  height: 100vh; /* Pour occuper toute la hauteur de l'écran */
+  padding-top: 20px;
+  position: fixed;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  display: block;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover, .sidebar ul li a.active {
+  background-color: #007bff; /* Couleur d'accent lors du survol */
+  border-radius: 5px;
+}
+
+/* Contenu principal */
+.content {
+  margin-left: 220px; /* Décalage pour le menu latéral */
+  padding: 20px;
+  min-height: 100vh;
+}

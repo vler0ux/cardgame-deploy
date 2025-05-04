@@ -1,0 +1,23 @@
+<div *ngIf="cards.length; else emptyList" class="card-list">
+  <div class="card" *ngFor="let card of cards">
+    <div class="card-image">
+      <img
+        [src]="'/assets/cards/' + card.value + '.png'"
+        [alt]="'Image de la carte ' + card.name"
+        (error)="onImageError($event)"
+      />
+    </div>
+    <div class="card-content">
+      <h3>{{ card.name }}</h3>
+      <p>Valeur : {{ card.value }}</p>
+    </div>
+    <div class="card-actions">
+      <button (click)="onEdit(card)" title="Modifier la carte {{ card.name }}">✏️ Modifier</button>
+      <button *ngIf="card.id" (click)="onDelete(card.id)" title="Supprimer la carte {{ card.name }}">🗑️ Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyList>
+  <p class="empty-message">Aucune carte disponible pour le moment.</p>
+</ng-template>
