@@ -1,0 +1,96 @@
+<div class="deck-selection" *ngIf="!gameStarted && !gameOver">
+  <h2>Choisissez les decks des joueurs</h2>
+
+  <label>
+    Joueur 1 :
+    <select [(ngModel)]="selectedPlayer1DeckId">
+      <option [value]="''" disabled selected>-- Choisir un deck --</option>
+      <option *ngFor="let deck of decks" [value]="deck.id">{{ deck.name }}</option>
+    </select>
+  </label>
+
+  <label>
+    Joueur 2 :
+    <select [(ngModel)]="selectedPlayer2DeckId">
+      <option [value]="''" disabled selected>-- Choisir un deck --</option>
+      <option *ngFor="let deck of decks" [value]="deck.id">{{ deck.name }}</option>
+    </select>
+  </label>
+
+  <button (click)="startGame()">🎮 Démarrer la partie</button>
+</div>
+
+<div *ngIf="gameStarted && !gameOver" class="game">
+  <h2>Tour {{ currentRound }} / {{ totalRounds }}</h2>
+
+  <div class="players">
+    <div class="player">
+      <h3>Joueur 1</h3>
+      <div class="deck">
+        <button
+          *ngFor="let card of player1DeckCards"
+          [disabled]="player1Ready"
+          (click)="selectCard(1, card)"
+        >
+          {{ card.name }}
+        </button>
+      </div>
+      <p *ngIf="player1Ready">✅ Prêt</p>
+    </div>
+
+    <div class="player">
+      <h3>Joueur 2</h3>
+      <div class="deck">
+        <div
+            *ngFor="let card of player1DeckCards"
+            class="card-selectable"
+            [class.disabled]="player1Ready"
+            (click)="!player1Ready && selectCard(1, card)"
+          >
+          <img
+            [src]="'/assets/cards/' + card.value + '.png'"
+            [alt]="card.name"
+            (error)="onImageError($event)"
+          />
+        </div>
+      </div>
+      <p *ngIf="player2Ready">✅ Prêt</p>
+    </div>
+  </div>
+
+  <div *ngIf="player1Ready && player2Ready" class="round-result">
+    <p>Cartes jouées :</p>
+    <div class="played-card">
+      <h4>Joueur 1 :</h4>
+      <img
+        *ngIf="player1SelectedCard"
+        [src]="'/assets/cards/' + player1SelectedCard.value + '.png'"
+        [alt]="player1SelectedCard.name"
+        (error)="onImageError($event)"
+      />
+      <p>Joueur 1 : {{ player1SelectedCard?.name }} ({{ player1SelectedCard?.value }})</p>
+    </div>
+    <div class="played-card">
+      <h4>Joueur 2 :</h4>
+      <img
+        *ngIf="player2SelectedCard"
+        [src]="'/assets/cards/' + player2SelectedCard.value + '.png'"
+        [alt]="player2SelectedCard.name"
+        (error)="onImageError($event)"
+      />
+    <p>Joueur 2 : {{ player2SelectedCard?.name }} ({{ player2SelectedCard?.value }})</p>
+    </div>
+    <p class="result">{{ roundResult }}</p>
+  </div>
+
+  <div class="scores">
+    <p>Score Joueur 1 : {{ player1Score }}</p>
+    <p>Score Joueur 2 : {{ player2Score }}</p>
+  </div>
+</div>
+
+<div *ngIf="gameOver" class="game-over">
+  <h2>🎯 Fin de la partie</h2>
+  <p>{{ roundResult }}</p>
+  <button (click)="restartGame()">🔄 Rejouer</button>
+</div>

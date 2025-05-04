@@ -4,6 +4,7 @@ import { RegisterComponent } from './core/auth/register/register.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { CardManagerComponent } from './features/card-manager/card-manager.component';
 import { DeckComponent } from './features/deck/deck.component';
+import { GameComponent } from './features/game/game.component';
 
 export const routes: Routes = [
 { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'game', pathMatch: 'full' },
     { path: 'card-manager', component: CardManagerComponent },
     { path: 'deck', component: DeckComponent },
+    { path: 'game', component: GameComponent },
   ],
   },
 
