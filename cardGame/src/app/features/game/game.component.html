@@ -1,24 +1,28 @@
-<div class="deck-selection" *ngIf="!gameStarted && !gameOver">
-  <h2>Choisissez les decks des joueurs</h2>
+<div class="deck-selection-container" *ngIf="!gameStarted && !gameOver">
+  <h2>🎴 Bienvenue dans le jeu de cartes !</h2>
+  <p>Choisissez un deck pour chaque joueur afin de commencer la partie.</p>
 
-  <label>
-    Joueur 1 :
-    <select [(ngModel)]="selectedPlayer1DeckId">
-      <option [value]="''" disabled selected>-- Choisir un deck --</option>
-      <option *ngFor="let deck of decks" [value]="deck.id">{{ deck.name }}</option>
-    </select>
-  </label>
+  <div class="deck-forms">
+    <div class="deck-form">
+      <label for="deckPlayer1">👤 Joueur 1</label>
+      <select id="deckPlayer1" [(ngModel)]="selectedPlayer1DeckId">
+        <option [value]="''" disabled selected>-- Choisir un deck --</option>
+        <option *ngFor="let deck of decks" [value]="deck.id">{{ deck.name }}</option>
+      </select>
+    </div>
 
-  <label>
-    Joueur 2 :
-    <select [(ngModel)]="selectedPlayer2DeckId">
-      <option [value]="''" disabled selected>-- Choisir un deck --</option>
-      <option *ngFor="let deck of decks" [value]="deck.id">{{ deck.name }}</option>
-    </select>
-  </label>
+    <div class="deck-form">
+      <label for="deckPlayer2">👤 Joueur 2</label>
+      <select id="deckPlayer2" [(ngModel)]="selectedPlayer2DeckId">
+        <option [value]="''" disabled selected>-- Choisir un deck --</option>
+        <option *ngFor="let deck of decks" [value]="deck.id">{{ deck.name }}</option>
+      </select>
+    </div>
+  </div>
 
-  <button (click)="startGame()">🎮 Démarrer la partie</button>
+  <button class="start-button" (click)="startGame()">🚀 Démarrer la partie</button>
 </div>
+
 
 <div *ngIf="gameStarted && !gameOver" class="game">
   <h2>Tour {{ currentRound }} / {{ totalRounds }}</h2>
@@ -58,35 +62,37 @@
       <p *ngIf="player2Ready">✅ Prêt</p>
   </div>
 
-  <div *ngIf="player1Ready && player2Ready" class="round-result">
+  <div class="played-cards-box" *ngIf="player1Ready && player2Ready">
 
-    <p>Cartes jouées par le joueur 1 :</p>
-    <div class="played-card">
-      <h4>Joueur 1 :</h4>
-      <img
-        *ngIf="player1SelectedCard"
-        [src]="'/assets/cards/' + player1SelectedCard.value + '.png'"
-        [alt]="player1SelectedCard.name"
-        (error)="onImageError($event)"
-      />
-      <p>Joueur 1 : {{ player1SelectedCard?.name }} ({{ player1SelectedCard?.value }})</p>
-    </div>
+     <h3>🃏 Cartes jouées ce tour</h3>
+    <div class="played-cards-row">
+        <div class="played-card">
+        <h4>👤 Joueur 1</h4>
+          <img
+            *ngIf="player1SelectedCard"
+            [src]="'/assets/cards/' + player1SelectedCard.value + '.png'"
+            [alt]="player1SelectedCard.name"
+            (error)="onImageError($event)"
+          />
+          <p>Joueur 1 : {{ player1SelectedCard?.name }} ({{ player1SelectedCard?.value }})</p>
+        </div>
 
-    <p>Cartes jouées par le joueur 2 :</p>
     <div class="played-card">
-      <h4>Joueur 2 :</h4>
-      <img
-        *ngIf="player2SelectedCard"
-        [src]="'/assets/cards/' + player2SelectedCard.value + '.png'"
-        [alt]="player2SelectedCard.name"
-        (error)="onImageError($event)"
-      />
-    <p>Joueur 2 : {{ player2SelectedCard?.name }} ({{ player2SelectedCard?.value }})</p>
+      <h4>👤 Joueur 2</h4>
+        <img
+          *ngIf="player2SelectedCard"
+          [src]="'/assets/cards/' + player2SelectedCard.value + '.png'"
+          [alt]="player2SelectedCard.name"
+          (error)="onImageError($event)"
+        />
+        <p>Joueur 2 : {{ player2SelectedCard?.name }} ({{ player2SelectedCard?.value }})</p>
     </div>
+  </div>
+
     <p class="result">{{ roundResult }}</p>
-    <div class="played-cards-section" *ngIf="playedCardsPlayer1.length > 0 || playedCardsPlayer2.length > 0">
-      <h3>🃏 Cartes déjà jouées</h3>
 
+    <!-- <div class="played-cards-section" *ngIf="playedCardsPlayer1.length > 0 || playedCardsPlayer2.length > 0">
+      <h3>🃏 Cartes déjà jouées</h3>
       <div class="played-cards-row">
         <div class="player-played-cards">
           <h4>Joueur 1</h4>
@@ -102,11 +108,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+
   </div>
 
 
-  <div class="scores">
+  <div class="scoreboard ">
     <p>Score Joueur 1 : {{ player1Score }}</p>
     <p>Score Joueur 2 : {{ player2Score }}</p>
   </div>

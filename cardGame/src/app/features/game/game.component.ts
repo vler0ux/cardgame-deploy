@@ -39,7 +39,7 @@ export class GameComponent implements OnInit {
   roundResult = '';
   gameOver = false;
   gameStarted = false;
-  roundLocked = false;
+
 
   constructor(private deckService: DeckService) {}
 
@@ -86,17 +86,13 @@ export class GameComponent implements OnInit {
     }
 
     if (this.player1Ready && this.player2Ready) {
-      this.roundLocked = true;
-
       setTimeout(() => {
         this.resolveRound();
-        this.roundLocked = false;
-      }, 2000);
+      }, 3000);
   }
 }
 
   resolveRound(): void {
-    console.log('resolveRound called!!!!!!!!!!!!!!!!!!'); // 👈 test
     const card1 = this.player1SelectedCard!;
     const card2 = this.player2SelectedCard!;
 
