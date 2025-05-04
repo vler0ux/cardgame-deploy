@@ -7,17 +7,7 @@
   <button type="button" *ngIf="isEditing" (click)="cancelEdit()">Annuler</button>
 </form>
 
-
-
 <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-
-<!-- <ul>
-  <li *ngFor="let card of cards">
-    <strong>{{ card.name }}</strong> (valeur : {{ card.value }})
-    <button (click)="editCard(card)">✏️ Modifier</button>
-    <button (click)="deleteCard(card.id!)">🗑️ Supprimer</button>
-  </li>
-</ul> -->
 
 <app-card-list
   [cards]="cards"

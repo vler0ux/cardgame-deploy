@@ -36,6 +36,7 @@ export class CardManagerComponent implements OnInit {
     this.cardService.getCards().subscribe({
       next: data => {
         this.cards = data;
+        console.log('Données reçues des cartes :', data);
         this.loading = false;
       },
       error: err => {

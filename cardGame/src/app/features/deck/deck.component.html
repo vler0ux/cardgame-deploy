@@ -24,19 +24,36 @@
       <h3>Cartes du deck {{ deck.name }}</h3>
       <div class="add-card">
         <select [(ngModel)]="selectedCardIdToAdd" class="card-select">
-          <option value="" disabled selected>Choisir une carte</option>
-          <option *ngFor="let card of allCards" [value]="card.id">{{ card.name }} ({{ card.value }})</option>
+          <option value="" disabled selected>Choisir une carte
+          </option>
+          <option *ngFor="let card of allCards" [value]="card.id">
+            {{ card.name }} ({{ card.value }})
+          </option>
         </select>
         <button (click)="addCardToSelectedDeck(deck.id!)" [disabled]="!selectedCardIdToAdd" class="add-card-btn">➕ Ajouter la carte</button>
       </div>
 
+      <div *ngIf="selectedCardIdToAdd">
+        <ng-container *ngFor="let card of allCards">
+          <div *ngIf="card.id === selectedCardIdToAdd" class="card-preview">
+            <img [src]="'/assets/cards/' + card.value + '.png'"  alt="{{ card.name }}" class="card-img-preview" />
+            <p>{{ card.name }} - Valeur : {{ card.value }}</p>
+          </div>
+        </ng-container>
+      </div>
+
+      <button (click)="addCardToSelectedDeck(deck.id!)" [disabled]="!selectedCardIdToAdd" class="add-card-btn">
+        ➕ Ajouter la carte
+      </button>
+
       <li *ngFor="let card of deckCards" class="deck-card-item">
         <div class="card">
+          <img [src]="'/assets/cards/' + card.value + '.png'"  alt="{{ card.name }}" class="card-img" />
           <p><strong>{{ card.name }}</strong></p>
           <p>Valeur : {{ card.value }}</p>
-          <!-- <button (click)="removeCardFromDeck(selectedDeckId, card.id!)" class="remove-card-btn">🗑️ Supprimer du deck</button>-->
         </div>
       </li>
+
     </div>
   </li>
 </ul>

@@ -11,11 +11,11 @@ import { DeckWithCardsModel } from '../models/deckWithCards.model';
 })
 export class CardService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/api/cards`;
+  private apiUrl = `${environment.apiUrl}/cards`;
 
   //Récupérer toutes les cartes
   getCards(): Observable<CardModel[]> {
-    return this.http.get<CardModel[]>(this.apiUrl);
+    return this.http.get<CardModel[]>('http://localhost:3000/api/cards');
   }
 
   // Récupérer une carte spécifique par son ID

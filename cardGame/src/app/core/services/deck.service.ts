@@ -12,7 +12,7 @@ import { DeckWithCardsModel } from '../models/deckWithCards.model';
 })
 export class DeckService {
     private http = inject(HttpClient);
-    private apiUrl = `${environment.apiUrl}/api/decks`;
+    private apiUrl = `${environment.apiUrl}/decks`;
 
     getAllDecks(): Observable<DeckModel[]> {
       return this.http.get<DeckModel[]>(this.apiUrl);
