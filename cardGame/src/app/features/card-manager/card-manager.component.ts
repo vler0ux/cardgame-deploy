@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CardService, CardModel } from '../../core/services/card.service';
+import { CardService} from '../../core/services/card.service';
 import { CardListComponent} from '../card-list/card-list.component';
+import { CardModel } from '../../core/models/card.model';
 
 @Component({
   selector: 'app-card-manager',

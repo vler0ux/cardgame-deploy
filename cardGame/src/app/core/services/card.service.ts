@@ -2,24 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-
-export interface CardModel {
-    id: string | undefined;     // Card unique Id
-    name: string;               // Card name
-    value: number;              // Card power value
-}
-export interface DeckModel {
-  id?: string;
-  name: string;
-  cards: string[]; // juste les IDs
-}
-
-export interface DeckWithCardsModel {
-  id?: string;
-  name: string;
-  cards: CardModel[];
-}
-
+import { CardModel } from '../models/card.model';
+import { DeckModel } from '../models/deck.model';
+import { DeckWithCardsModel } from '../models/deckWithCards.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +19,8 @@ export class CardService {
   }
 
   // Récupérer une carte spécifique par son ID
-  getCardById(id: string): Observable<CardModel[]> {
-    return this.http.get<CardModel[]>(`${this.apiUrl}/${id}`);
+  getCardById(id: string): Observable<CardModel> {
+    return this.http.get<CardModel>(`${this.apiUrl}/${id}`);
   }
 
   //créer une carte

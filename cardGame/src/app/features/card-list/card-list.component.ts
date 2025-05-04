@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule, NgClass, NgFor, NgIf} from '@angular/common';
-import { CardModel,CardService } from '../../core/services/card.service';
+import { CardModel} from '../../core/models/card.model';
 
 @Component({
   selector: 'app-card-list',

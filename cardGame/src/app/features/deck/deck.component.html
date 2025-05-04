@@ -30,14 +30,13 @@
         <button (click)="addCardToSelectedDeck(deck.id!)" [disabled]="!selectedCardIdToAdd" class="add-card-btn">➕ Ajouter la carte</button>
       </div>
 
-      <div class="deck-card-container">
-        <ul class="deck-card-list">
-          <li *ngFor="let card of deckCards" class="deck-card-item">
-            <app-card [cardId]="card.id"></app-card>
-           <!-- <button (click)="removeCardFromDeck(selectedDeckId, card.id!)" class="remove-card-btn">🗑️ Supprimer du deck</button>-->
-          </li>
-        </ul>
-      </div>
+      <li *ngFor="let card of deckCards" class="deck-card-item">
+        <div class="card">
+          <p><strong>{{ card.name }}</strong></p>
+          <p>Valeur : {{ card.value }}</p>
+          <!-- <button (click)="removeCardFromDeck(selectedDeckId, card.id!)" class="remove-card-btn">🗑️ Supprimer du deck</button>-->
+        </div>
+      </li>
     </div>
   </li>
 </ul>
