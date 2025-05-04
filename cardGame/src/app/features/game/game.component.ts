@@ -25,6 +25,9 @@ export class GameComponent implements OnInit {
   player1SelectedCard: CardModel | null = null;
   player2SelectedCard: CardModel | null = null;
 
+  playedCardsPlayer1: CardModel[] = [];
+  playedCardsPlayer2: CardModel[] = [];
+
   player1Score = 0;
   player2Score = 0;
 
@@ -36,6 +39,7 @@ export class GameComponent implements OnInit {
   roundResult = '';
   gameOver = false;
   gameStarted = false;
+  roundLocked = false;
 
   constructor(private deckService: DeckService) {}
 
@@ -82,13 +86,22 @@ export class GameComponent implements OnInit {
     }
 
     if (this.player1Ready && this.player2Ready) {
-      this.resolveRound();
-    }
+      this.roundLocked = true;
+
+      setTimeout(() => {
+        this.resolveRound();
+        this.roundLocked = false;
+      }, 2000);
   }
+}
 
   resolveRound(): void {
+    console.log('resolveRound called!!!!!!!!!!!!!!!!!!'); // 👈 test
     const card1 = this.player1SelectedCard!;
     const card2 = this.player2SelectedCard!;
+
+    this.playedCardsPlayer1.push(card1);
+    this.playedCardsPlayer2.push(card2);
 
     if (card1.value > card2.value) {
       this.player1Score++;
@@ -104,13 +117,18 @@ export class GameComponent implements OnInit {
     this.player1DeckCards = this.player1DeckCards.filter(c => c.id !== card1.id);
     this.player2DeckCards = this.player2DeckCards.filter(c => c.id !== card2.id);
 
-    this.currentRound++;
     this.player1SelectedCard = null;
     this.player2SelectedCard = null;
     this.player1Ready = false;
     this.player2Ready = false;
 
-    if (this.currentRound > this.totalRounds) {
+    this.currentRound++;
+
+    if (
+      this.player1DeckCards.length === 0 ||
+      this.player2DeckCards.length === 0 ||
+      this.currentRound > this.totalRounds
+    ){
       this.endGame();
     }
   }
@@ -137,6 +155,8 @@ export class GameComponent implements OnInit {
     this.roundResult = '';
     this.gameOver = false;
     this.gameStarted = false;
+    this.playedCardsPlayer1 = [];
+    this.playedCardsPlayer2 = [];
   }
 
   onImageError(event: Event): void {

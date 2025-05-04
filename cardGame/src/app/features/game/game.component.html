@@ -25,7 +25,7 @@
 
   <div class="players">
     <div class="player">
-      <h3>Joueur 1</h3>
+      <h3>Joueur 1</h3> <!--appel du joueur 1 -->
       <div class="deck">
         <button
           *ngFor="let card of player1DeckCards"
@@ -39,27 +39,28 @@
     </div>
 
     <div class="player">
-      <h3>Joueur 2</h3>
+      <h3>Joueur 2</h3><!--appel du joueur 1 -->
       <div class="deck">
-        <div
-            *ngFor="let card of player1DeckCards"
+          <div
+            *ngFor="let card of player2DeckCards"
             class="card-selectable"
-            [class.disabled]="player1Ready"
-            (click)="!player1Ready && selectCard(1, card)"
-          >
-          <img
-            [src]="'/assets/cards/' + card.value + '.png'"
-            [alt]="card.name"
-            (error)="onImageError($event)"
-          />
+            [class.disabled]="player2Ready"
+            (click)="!player2Ready && selectCard(2, card)"
+            >
+            <img
+              [src]="'/assets/cards/' + card.value + '.png'"
+              [alt]="card.name"
+              (error)="onImageError($event)"
+            />
+          </div>
         </div>
       </div>
       <p *ngIf="player2Ready">✅ Prêt</p>
-    </div>
   </div>
 
   <div *ngIf="player1Ready && player2Ready" class="round-result">
-    <p>Cartes jouées :</p>
+
+    <p>Cartes jouées par le joueur 1 :</p>
     <div class="played-card">
       <h4>Joueur 1 :</h4>
       <img
@@ -70,6 +71,8 @@
       />
       <p>Joueur 1 : {{ player1SelectedCard?.name }} ({{ player1SelectedCard?.value }})</p>
     </div>
+
+    <p>Cartes jouées par le joueur 2 :</p>
     <div class="played-card">
       <h4>Joueur 2 :</h4>
       <img
@@ -81,7 +84,27 @@
     <p>Joueur 2 : {{ player2SelectedCard?.name }} ({{ player2SelectedCard?.value }})</p>
     </div>
     <p class="result">{{ roundResult }}</p>
+    <div class="played-cards-section" *ngIf="playedCardsPlayer1.length > 0 || playedCardsPlayer2.length > 0">
+      <h3>🃏 Cartes déjà jouées</h3>
+
+      <div class="played-cards-row">
+        <div class="player-played-cards">
+          <h4>Joueur 1</h4>
+          <div class="card-list">
+            <img *ngFor="let card of playedCardsPlayer1" [src]="'/assets/cards/' + card.value + '.png'" alt="Carte Joueur 1" (error)="onImageError($event)" />
+          </div>
+        </div>
+
+        <div class="player-played-cards">
+          <h4>Joueur 2</h4>
+          <div class="card-list">
+            <img *ngFor="let card of playedCardsPlayer2" [src]="'/assets/cards/' + card.value + '.png'" alt="Carte Joueur 2" (error)="onImageError($event)" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 
   <div class="scores">
     <p>Score Joueur 1 : {{ player1Score }}</p>

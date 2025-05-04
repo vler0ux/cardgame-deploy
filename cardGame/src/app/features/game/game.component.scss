@@ -114,3 +114,28 @@
     border-radius: 8px;
   }
 }
+
+.round-announcement {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
+}
+.round-history {
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+.cards {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.cards img {
+  width: 80px;
+  height: auto;
+}
