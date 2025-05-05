@@ -3,7 +3,7 @@
     <div class="card-image">
       <img
       *ngIf="card.id !== undefined && card.id!== null"
-        [src]="'/assets/cards/' + card.id + '.png'"
+        [src]="'/assets/cards/' + card.value + '.png'"
         [alt]="'Image de la carte ' + card.name"
         (error)="onImageError($event)"
       />

@@ -2,14 +2,27 @@
 
 body {
   background-color: lightblue;
+  height: 100%;
+  margin: 0;
 }
 /* Bandeau noir en haut */
 .dashboard-header {
-  background-color: #111; /* Noir */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* ou la hauteur de ton header */
+  background-color: black;
   color: white;
-  padding: 20px 30px;
-  text-align: left;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  padding: 0 20px;
+}
+
+.dashboard {
+  display: flex;
+  margin-top: 60px; /* même hauteur que le header */
+  height: calc(100vh - 60px);
 }
 
 .dashboard-header h1 {
@@ -53,6 +66,8 @@ body {
 /* Contenu principal */
 .content {
   margin-left: 220px; /* Décalage pour le menu latéral */
+  flex: 1;
+  overflow-y: auto;
   padding: 20px;
   min-height: 100vh;
 }

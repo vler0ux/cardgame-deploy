@@ -89,6 +89,19 @@ export class DeckComponent implements OnInit {
 
   addDeck(): void {
     if (this.form.invalid) return;
+
+    const deckName = this.form.value.name.trim();
+    if (deckName.length < 3) {
+      this.errorMessage = 'Le nom du deck doit contenir au moins 3 caractères.';
+      return;
+    }
+    // Vérification de l'existence du deck
+    const deckExists = this.decks.some(deck => deck.name.toLowerCase() === deckName.toLowerCase());
+
+    if (deckExists) {
+      this.errorMessage = 'Un deck avec ce nom existe déjà.';
+      return;
+    }
     const newDeck = { name: this.form.value.name, cards: [] };
 
     this.deckService.addDeck(newDeck).subscribe({

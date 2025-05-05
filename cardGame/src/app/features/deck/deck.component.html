@@ -1,31 +1,32 @@
-<h2>Decks</h2>
+<h2>📚 Gestion des Decks</h2>
 
 <form [formGroup]="form" (ngSubmit)="addDeck()" class="deck-form">
   <label for="deckName">Nom du deck :</label>
-  <input id="deckName" type="text" formControlName="name" placeholder="Entrez le nom de votre deck" />
-  <button type="submit" [disabled]="form.invalid" class="submit-btn">Ajouter</button>
+  <input id="deckName" type="text" formControlName="name" placeholder="Ex : Deck Magique 🧙" />
+  <button type="submit" [disabled]="form.invalid" class="submit-btn">➕ Ajouter</button>
 </form>
 
-<div *ngIf="loading" class="loading">Chargement...</div>
-<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div *ngIf="loading" class="loading">⏳ Chargement...</div>
+<div *ngIf="errorMessage" class="error-message">❗ {{ errorMessage }}</div>
 
 <ul *ngIf="!loading && !errorMessage" class="deck-list">
   <li *ngFor="let deck of decks" class="deck-item">
-    <div class="deck-info">
-      <strong>{{ deck.name }} </strong>({{ deck.cards.length }} cartes)
-    </div>
-
-    <div class="deck-actions">
-      <button (click)="viewDeckCards(deck)" class="action-btn">👀 Voir</button>
-      <button (click)="deleteDeck(deck.id!)" class="action-btn delete-btn">🗑️ Supprimer</button>
+    <div class="deck-header">
+      <div class="deck-info">
+        <strong>{{ deck.name }}</strong> ({{ deck.cards.length }} cartes)
+      </div>
+      <div class="deck-actions">
+        <button (click)="viewDeckCards(deck)" class="action-btn">👀 Voir</button>
+        <button (click)="deleteDeck(deck.id!)" class="action-btn delete-btn">🗑️ Supprimer</button>
+      </div>
     </div>
 
     <div *ngIf="selectedDeckId === deck.id" class="deck-cards">
-      <h3>Cartes du deck {{ deck.name }}</h3>
+      <h3>🃏 Cartes du deck <em>{{ deck.name }}</em></h3>
+
       <div class="add-card">
         <select [(ngModel)]="selectedCardIdToAdd" class="card-select">
-          <option value="" disabled selected>Choisir une carte
-          </option>
+          <option value="" disabled selected>-- Choisir une carte --</option>
           <option *ngFor="let card of allCards" [value]="card.id">
             {{ card.name }} ({{ card.value }})
           </option>
@@ -33,28 +34,22 @@
         <button (click)="addCardToSelectedDeck(deck.id!)" [disabled]="!selectedCardIdToAdd" class="add-card-btn">➕ Ajouter la carte</button>
       </div>
 
-      <div *ngIf="selectedCardIdToAdd">
+      <div *ngIf="selectedCardIdToAdd" class="card-preview">
         <ng-container *ngFor="let card of allCards">
-          <div *ngIf="card.id === selectedCardIdToAdd" class="card-preview">
-            <img [src]="'/assets/cards/' + card.value + '.png'"  alt="{{ card.name }}" class="card-img-preview" />
-            <p>{{ card.name }} - Valeur : {{ card.value }}</p>
+          <div *ngIf="card.id === selectedCardIdToAdd" class="card">
+            <img [src]="'/assets/cards/' + card.value + '.png'" alt="{{ card.name }}" class="card-img-preview" />
+            <p><strong>{{ card.name }}</strong> - Valeur : {{ card.value }}</p>
           </div>
         </ng-container>
       </div>
 
-      <button (click)="addCardToSelectedDeck(deck.id!)" [disabled]="!selectedCardIdToAdd" class="add-card-btn">
-        ➕ Ajouter la carte
-      </button>
-
-      <li *ngFor="let card of deckCards" class="deck-card-item">
-        <div class="card">
-          <img [src]="'/assets/cards/' + card.value + '.png'"  alt="{{ card.name }}" class="card-img" />
+      <div class="card-gallery">
+        <div *ngFor="let card of deckCards" class="card">
+          <img [src]="'/assets/cards/' + card.value + '.png'" alt="{{ card.name }}" class="card-img" />
           <p><strong>{{ card.name }}</strong></p>
           <p>Valeur : {{ card.value }}</p>
         </div>
-      </li>
-
+      </div>
     </div>
   </li>
 </ul>
-

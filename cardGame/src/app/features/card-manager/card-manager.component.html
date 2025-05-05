@@ -2,7 +2,7 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <input formControlName="name" placeholder="Nom de la carte" />
-  <input type="number" formControlName="value" placeholder="Valeur de la carte" />
+  <input type="number" formControlName="value" placeholder="Valeur de la carte"  min="1" max="20"/>
   <button type="submit">{{ isEditing ? 'Mettre à jour' : 'Créer la carte' }}</button>
   <button type="button" *ngIf="isEditing" (click)="cancelEdit()">Annuler</button>
 </form>
