@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('L’utilisateur peut se connecter', async ({ page }) => {
+test('L’utilisateur peut se connecter o', async ({ page }) => {
   // 1. Va sur la page de login
   await page.goto('http://localhost:4200/login');
 
