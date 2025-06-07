@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:3000/api',
-  ssoUrl: 'http://localhost:3010',
+  production: true,
+  apiUrl: 'https://cardgame-server.onrender.com/api',
+  ssoUrl: 'https://cardgame-sso.onrender.com'
 };
